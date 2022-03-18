@@ -1,22 +1,32 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController; 
+use App\Http\Livewire\Admin\MovieIndex ;
+use App\Http\Livewire\Admin\SerieIndex ;
+use App\Http\Livewire\Admin\SeasonIndex ;
+use App\Http\Livewire\Admin\EpisodeIndex ;
+use App\Http\Livewire\Admin\GenreIndex ;
+use App\Http\Livewire\Admin\CastIndex ;
+use App\Http\Livewire\Admin\TagIndex ;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
+    auth()->user()->assignRole('admin');
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/' , [AdminController::class , 'index'])->name('index');
+    Route::get('movies' , MovieIndex::class)->name('movies');
+    Route::get('series' , SerieIndex::class)->name('series.index');
+    Route::get('series/{serie}/seasons' , SeasonIndex::class)->name('seasons.index');
+    Route::get('series/{serie}/seasons/{season}/episodes' , EpisodeIndex::class)->name('episodes.index');
+    Route::get('genres' , GenreIndex::class)->name('genres.index');
+    Route::get('movies' , CastIndex::class)->name('casts.index');
+    Route::get('movies' , TagIndex::class)->name('tags.index');
+});
