@@ -34,7 +34,7 @@
             <tbody>
                 
                 @forelse ($tags as $tag)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" wire:key="key-{{$tag->id}}-index">
                     <td class="px-6 py-4">
                         {{$tag->tag_name}}
                     </td>
