@@ -1,9 +1,9 @@
 <div class="w-full mx-auto">
 
 	<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-		<div class="p-4 flex justify-between items-center">
+		<div class="p-4 flex flex-col justify-start   items-center md:flex-row md:justify-between ">
 			<label for="table-search" class="sr-only">Search</label>
-			<div class="relative mt-1">
+			<div class="relative mt-1 mb-3 md:mb-0">
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 					<svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg">
@@ -13,50 +13,86 @@
 					</svg>
 				</div>
 				<input type="text" id="table-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
-         
-        
             </div>
-            <x-jet-button>Create</x-jet-button>
+            <x-jet-button wire:click="showModal">Create</x-jet-button>
         </div>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     
                     <th scope="col" class="px-6 py-3">
-                        Title
+                        Tag
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Rate
+                        Slug
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Date
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
+                       
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="w-4 p-4">
-                        <div class="flex items-center">
-                            <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                        </div>
-                    </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                        Apple MacBook Pro 17"
-                    </th>
+                
+                @forelse ($tags as $tag)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4">
-                        Sliver
+                        {{$tag->tag_name}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$tag->slug}}
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <button wire:click="editModal({{$tag->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
+                        <button wire:click="deleteTag({{$tag->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
+                    </td>
+                   @empty
+                    <td class="px-6 py-4">
+                        Empty
                     </td>
                 </tr>
+                @endforelse
+                
             </tbody>
         </table>
     </div>
-    
+    <x-jet-dialog-modal wire:model="modal">
+        <x-slot name="title">
+            <div class="text-center">
+                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Tag</h1>
+                <p class="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
+            </div>
+        </x-slot>
+        <x-slot name="content">
+
+            <div class="flex items-center w-full ">
+                <div class="w-full">
+                    <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
+                     
+                        <div class="m-7">
+                            <form>
+                                <div class="mb-6">
+                                    <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Tag Name</label>
+                                    <input wire:model="tag_name" type="text" id="name"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                {{-- <div class="mb-6">
+                                    <label for="message" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your Message</label>
+                                    <textarea rows="5" name="message" id="message" placeholder="Your Message" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" required></textarea>
+                                </div> --}}
+                                <div class="mb-6">
+                                    <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
+                                    @if ($tag_id)
+                                        <button wire:click="updateTag" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
+                                        @else
+                                        <button wire:click="createTag" type="button"  class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Create</button>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </x-slot>
+        <x-slot name="footer">Footer</x-slot>
+    </x-jet-dialog-modal>
 </div>

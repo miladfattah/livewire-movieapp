@@ -1,5 +1,3 @@
-<!-- component -->
-<!-- This is an example component -->
 <div class="w-full mx-auto">
 
 	<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
