@@ -18,6 +18,10 @@ class CastIndex extends Component
     public $castId ;
     public $modal = false ;
 
+    public $search = '' ;
+    public $sort = 'asc' ;
+    public $perPage = 5 ;
+
     protected $rules = [
         'castName' => 'required',
         'castPosterPath' => 'required'
@@ -25,7 +29,7 @@ class CastIndex extends Component
 
     public function generateCast()
     {
-        $newCast = Http::get("https://api.themoviedb.org/3/person/{$this->castTMDBId}?api_key={$this->key}");
+        $newCast = Http::get("https://api.themoviedb.org/3/person/{$this->castTMDBId}?api_key={$this->key}")->json()   ;
         $cast = Cast::where('tmdb_id' , $newCast['id'])->first();
         if(!$cast){
             Cast::create([
@@ -79,10 +83,15 @@ class CastIndex extends Component
         $this->reset();
     }
 
+    public function resetFilters()
+    {
+        $this->reset(['search' , 'perPage' , 'sort']);
+    }
+
     public function render()
     {
         return view('livewire.admin.cast-index' , [
-            'casts' => Cast::all()
+            'casts' => Cast::search($this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }
 }
