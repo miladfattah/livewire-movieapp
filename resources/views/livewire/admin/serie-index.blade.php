@@ -81,6 +81,7 @@
                         {{$serie->slug}}
                     </td>
                     <td class="px-6 py-4 text-right">
+                        <a href="{{route('admin.seasons.index' , $serie->id)}}" class="px-2 py-1 text-xs text-white bg-blue-500 rounded-md focus:bg-blue-600 focus:outline-none">seasons</a>
                         <button wire:click="editModal({{$serie->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
                         <button wire:click="deleteSerie({{$serie->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
                     </td>
