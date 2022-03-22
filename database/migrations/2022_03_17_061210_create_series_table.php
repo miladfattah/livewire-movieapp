@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('created_year');
             $table->string('pooster');
-            $table->bigInteger('visits')->deafult(1);
+            $table->bigInteger('visits')->default(1);
             $table->timestamps();
         });
     }
