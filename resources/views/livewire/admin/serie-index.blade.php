@@ -93,7 +93,7 @@
             </tbody>
         </table>
     </div>
-    {{-- <x-jet-dialog-modal wire:model="modal">
+    <x-jet-dialog-modal wire:model="modal">
         <x-slot name="title">
             <div class="text-center">
                 <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Serie Edit</h1>
@@ -110,16 +110,23 @@
                             <form>
                                 <div class="mb-6">
                                     <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Cast Name</label>
-                                    <input wire:model="castName" type="text" id="name"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    <input wire:model="name" type="text" id="name"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                                 </div>
-                                @error('castName')
+                                @error('name')
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
-                                    <label for="castPosterPath" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster</label>
-                                    <input wire:model="castPosterPath" type="text" id="castPosterPath"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    <label for="created_year" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster</label>
+                                    <input wire:model="created_year" type="text" id="created_year"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                                 </div>
-                                @error('castPosterPath')
+                                @error('created_year')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+                                <div class="mb-6">
+                                    <label for="poster_path" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster</label>
+                                    <input wire:model="poster_path" type="text" id="poster_path"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                @error('poster_path')
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
@@ -134,5 +141,5 @@
 
         </x-slot>
         <x-slot name="footer">Footer</x-slot>
-    </x-jet-dialog-modal> --}}
+    </x-jet-dialog-modal>
 </div>
