@@ -25,9 +25,11 @@ class EpisodeIndex extends Component
 
     public $name ; 
     public $episodeNumber ;
+    public $overview ;
 
     public $rules = [
         'name' => 'required' , 
+        'overview' => 'required' 
     ];
 
 
@@ -79,21 +81,21 @@ class EpisodeIndex extends Component
         $episode = Episode::findOrFail($this->episodeId);
         $this->name = $episode->name ; 
         $this->episodeNumber = $episode->episode_number ;
-        $this->poster_path = $season->poster_path ;
+        $this->overview = $episode->overview ;
     }
 
-    public function updateSeason()
+    public function updateEpisode()
     {
         $this->validate();
-        $season = Season::findOrFail($this->episodeId);
-        $season->update([
+        $episode = Episode::findOrFail($this->episodeId);
+        $episode->update([
             'name' => $this->name , 
             'slug' => Str::slug($this->name), 
-            'season_number' => $this->seasonNumber ,
-            'poster_path' => $this->poster_path
+            'episode_number' => $this->episodeNumber ,
+            'overview' => $this->overview
         ]);
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'season updated']);
-        $this->reset(['name' , 'seasonNumber' , 'poster_path' , 'episodeId' , 'modal']);
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Episode updated']);
+        $this->reset(['name' , 'episodeNumber' , 'overview' , 'episodeId' , 'modal']);
     }
 
     public function resetFilters()
@@ -101,12 +103,12 @@ class EpisodeIndex extends Component
         $this->reset(['search' , 'sort' , 'perPage']);
     }
 
-    public function deleteSeason($id)
+    public function deleteEpisode($id)
     {
-        $season = Season::findOrFail($id);
-        $season->delete();
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'season deleted']);
-        $this->reset(['name' , 'seasonNumber' , 'poster_path' , 'episodeId']);
+        $episode = Episode::findOrFail($id);
+        $episode->delete();
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'episode deleted']);
+        $this->reset(['name' , 'episodeNumber' , 'overview' , 'episodeId']);
     }
     
     public function render()

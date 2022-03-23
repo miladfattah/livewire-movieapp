@@ -99,7 +99,7 @@
     <x-jet-dialog-modal wire:model="modal">
         <x-slot name="title">
             <div class="text-center">
-                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Season Edit</h1>
+                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Episode Edit</h1>
                 <p class="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
             </div>
         </x-slot>
@@ -119,22 +119,22 @@
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
-                                    <label for="seasonNumber" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Season Number</label>
-                                    <input wire:model="seasonNumber" type="text" id="seasonNumber"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    <label for="episodeNumber" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Season Number</label>
+                                    <input wire:model="episodeNumber" type="text" id="episodeNumber"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                                 </div>
-                                @error('seasonNumber')
+                                @error('episodeNumber')
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
-                                    <label for="poster_path" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster</label>
-                                    <input wire:model="poster_path" type="text" id="poster_path"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    <label for="overview" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster</label>
+                                    <input wire:model="overview" type="text" id="overview"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                                 </div>
-                                @error('poster_path')
+                                @error('overview')
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
                                     <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
-                                    <button wire:click="updateSeason" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
+                                    <button wire:click="updateEpisode" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
                                 </div>
                             </form>
                         </div>
