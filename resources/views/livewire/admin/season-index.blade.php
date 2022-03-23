@@ -42,10 +42,10 @@
             </div>
             <form class="flex space-x-4 shadow bg-white rounded-md m-2 p-2">
                 <div class="p-1 flex items-center">
-                    <label for="tmdb_id_g" class="block text-sm font-medium text-gray-700 mr-4">Season Tmdb Id</label>
+                    <label for="tmdb_id_g" class="block text-sm font-medium text-gray-700 mr-4">Season Number</label>
                     <div class="relative rounded-md shadow-sm">
-                        <input wire:model="seasonTmdbId"  id="tmdb_id_g" name="tmdb_id_g"
-                            class="px-3 py-2 border border-gray-300 rounded" placeholder="Season ID" />
+                        <input wire:model="seasonNumber"  id="tmdb_id_g" name="tmdb_id_g"
+                            class="px-3 py-2 border border-gray-300 rounded" placeholder="Season Number" />
                     </div>
                 </div>
                 <div class="p-1">
