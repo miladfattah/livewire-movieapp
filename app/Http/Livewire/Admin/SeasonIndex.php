@@ -13,6 +13,8 @@ use App\Models\Season;
 class SeasonIndex extends Component
 {
     use WithPagination ;
+    public Serie $serie ; 
+
     public $search = '' ; 
     public $sort = 'asc';
     public $perPage = 5 ;
@@ -28,11 +30,13 @@ class SeasonIndex extends Component
         'name' => 'required' , 
     ];
 
-    public Serie $serie ; 
+
 
     public function generateSeason()
     {
-        $season = Season::where('season_number', $this->seasonNumber)->exists();
+        $season = Season::where('serie_id' , $this->serie->id )
+                        ->where('season_number', $this->seasonNumber)
+                        ->exists();
         if($season){
             $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Season exists1']);
             return;
@@ -102,6 +106,7 @@ class SeasonIndex extends Component
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'season deleted']);
         $this->reset(['name' , 'seasonNumber' , 'poster_path' , 'seasonId']);
     }
+    
     public function render()
     {
         return view('livewire.admin.season-index' , [
