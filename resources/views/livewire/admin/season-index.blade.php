@@ -82,7 +82,7 @@
                     </td>
                     <td class="px-6 py-4 text-right">
                         <button wire:click="editModal({{$season->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
-                        <button wire:click="deleteseason({{$season->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
+                        <button wire:click="deleteSeason({{$season->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
                     </td>
                    @empty
                     <td class="px-6 py-4">
@@ -96,7 +96,7 @@
     <x-jet-dialog-modal wire:model="modal">
         <x-slot name="title">
             <div class="text-center">
-                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">season Edit</h1>
+                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Season Edit</h1>
                 <p class="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
             </div>
         </x-slot>
@@ -116,10 +116,10 @@
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
-                                    <label for="created_year" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster</label>
-                                    <input wire:model="created_year" type="text" id="created_year"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    <label for="seasonNumber" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Season Number</label>
+                                    <input wire:model="seasonNumber" type="text" id="seasonNumber"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                                 </div>
-                                @error('created_year')
+                                @error('seasonNumber')
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
