@@ -26,6 +26,7 @@ class EpisodeIndex extends Component
     public $name ; 
     public $episodeNumber ;
     public $overview ;
+    public $isPublic ;
 
     public $rules = [
         'name' => 'required' , 
@@ -82,6 +83,7 @@ class EpisodeIndex extends Component
         $this->name = $episode->name ; 
         $this->episodeNumber = $episode->episode_number ;
         $this->overview = $episode->overview ;
+        $this->isPublic = $episode->is_public ;
     }
 
     public function updateEpisode()
@@ -92,10 +94,11 @@ class EpisodeIndex extends Component
             'name' => $this->name , 
             'slug' => Str::slug($this->name), 
             'episode_number' => $this->episodeNumber ,
-            'overview' => $this->overview
+            'overview' => $this->overview ,
+            'is_public' => $this->isPublic 
         ]);
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Episode updated']);
-        $this->reset(['name' , 'episodeNumber' , 'overview' , 'episodeId' , 'modal']);
+        $this->reset(['name' , 'episodeNumber' , 'overview' , 'isPublic' , 'episodeId' , 'modal' ]);
     }
 
     public function resetFilters()
@@ -108,7 +111,7 @@ class EpisodeIndex extends Component
         $episode = Episode::findOrFail($id);
         $episode->delete();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'episode deleted']);
-        $this->reset(['name' , 'episodeNumber' , 'overview' , 'episodeId']);
+        $this->reset(['name' , 'episodeNumber' , 'overview', 'isPublic' , 'episodeId']);
     }
     
     public function render()

@@ -126,12 +126,18 @@
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
                                 <div class="mb-6">
-                                    <label for="overview" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster</label>
-                                    <input wire:model="overview" type="text" id="overview"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    <label for="overview" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your overview</label>
+                                    <textarea rows="5" name="overview" id="overview" placeholder="Your overview" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" >{{$overview}}</textarea>
                                 </div>
                                 @error('overview')
                                     <span class="text-xs text-red-600">{{$message}}</span>
                                 @enderror
+                                <div class="mb-6">
+                                    <input wire:model="isPublic" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
+                                      is public
+                                    </label>
+                                </div>
                                 <div class="mb-6">
                                     <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
                                     <button wire:click="updateEpisode" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
