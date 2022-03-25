@@ -11,17 +11,16 @@ class TagIndex extends Component
     public $modal = false ; 
     public $tag_name ;
     public $tag_id ; 
-    public $tags = [] ;
+
+    public $search = '' ;
+    public $sort = 'asc' ;
+    public $perPage = 5 ;
 
     public $rules = [
         'tag_name' => ['required' , 'string'] , 
     ];
 
-    public function mount()
-    {
-        $this->tags = Tag::query('id' , 'tag_name' , 'slug')->get();
-    }
-        
+  
     public function showModal()
     {
         $this->reset('tag_name');
@@ -41,7 +40,6 @@ class TagIndex extends Component
             'slug' => Str::slug($this->tag_name)
         ]);
         $this->reset();
-        $this->tags = Tag::query('id' , 'tag_name' , 'slug')->get();
     }
     
     public function editModal($tagId)
@@ -75,6 +73,8 @@ class TagIndex extends Component
 
     public function render()
     {
-        return view('livewire.admin.tag-index');
+        return view('livewire.admin.tag-index' , [
+            'tags' => Tag::search($this->search)->orderBy($this->sort)->paginate($this->perPage)
+        ]);
     }
 }

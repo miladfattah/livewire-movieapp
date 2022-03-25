@@ -78,7 +78,11 @@
                         {{$episode->name}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$episode->is_public}}
+                        @if ($episode->is_public)
+                        <span class="bg-green-200 opacity-80 rounded-full px-2">published</span>
+                        @else
+                        <span class="bg-red-200 opacity-50 rounded-full px-2">unPublished</span>
+                        @endif
                     </td>
                     <td class="px-6 py-4 text-right">
                         <button wire:click="editModal({{$episode->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
