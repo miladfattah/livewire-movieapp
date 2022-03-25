@@ -117,9 +117,14 @@ class EpisodeIndex extends Component
     public function render()
     {
         return view('livewire.admin.episode-index' , [
-            'episodes' => Episode::where('season_id' , $this->season->id)
-                        ->orderBy('name' , $this->sort)
-                        ->paginate($this->perPage)
+            // 'episodes' => Episode::where('season_id' , $this->season->id)
+            //             ->orderBy('name' , $this->sort)
+            //             ->paginate($this->perPage)
+            'episodes' => Episode::search($this->search)
+                                ->query(function($query){
+                                    $query->orderBy('name' , $this->sort);
+                                })
+                                ->paginate($this->perPage)
         ]);
     }
 }

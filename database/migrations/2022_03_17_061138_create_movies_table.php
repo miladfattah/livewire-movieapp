@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('is_public')->default(0);
             $table->bigInteger('visits')->default(1);
             $table->string('slug');
-            $table->decimal('ratingn', 8,1);
+            $table->decimal('rating', 8,1);
             $table->string('poster_path');
             $table->string('backdrop_path')->nullable();
             $table->text('overview');

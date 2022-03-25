@@ -97,7 +97,11 @@ class SerieIndex extends Component
     public function render()
     {
         return view('livewire.admin.serie-index'  , [
-            'series' => Serie::search($this->search)->orderBy($this->sort)->paginate($this->perPage)
+            'series' => Serie::search($this->search)
+            ->query(function($query){
+                $query->orderBy('name' , $this->sort );
+            })
+            ->paginate($this->perPage)
         ]);
     }
 }

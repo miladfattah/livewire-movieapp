@@ -15,8 +15,21 @@ class MovieIndex extends Component
     public $modal = false ;
     public $movieId ; 
 
-    public $movieTmdb ; 
+    public $search = '' ;
+    public $sortColumn = 'title' ;
+    public $sortDirection = 'asc' ; 
+    public $perPage = 5 ; 
 
+    public $movieTmdb ; 
+    public $title;
+    public $runtime;
+    public $lang;
+    public $videoFormat;
+    public $rating;
+    public $posterPath;
+    public $backdropPath;
+    public $overview;
+    public $isPublic;
     
     public $rules = [
         'name' => 'required' , 
@@ -44,7 +57,7 @@ class MovieIndex extends Component
                 'video_format' => 'video_format' ,
                 'visits' => $newMovie['vote_count'] , 
                 'slug' => Str::slug($newMovie['title']) ,
-                'ratingn' => 5 , 
+                'rating' => $newMovie['vote_average'] , 
                 'poster_path' => $newMovie['poster_path'] , 
                 'backdrop_path' => $newMovie['backdrop_path'] , 
                 'overview' => $newMovie['overview'] 
@@ -55,6 +68,17 @@ class MovieIndex extends Component
         }else{
             $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Movie exisit2']);
         }
+    }
+
+
+    public function sortByColumn($column)
+    {
+        if($this->sortColumn == $column){
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc' ;
+        }else{
+            $this->sortDirection = 'asc' ;
+        }
+        $this->sortColumn = $column ;
     }
 
     public function closeModal()
@@ -107,7 +131,11 @@ class MovieIndex extends Component
     public function render()
     {
         return view('livewire.admin.movie-index' , [
-            'movies' => Movie::paginate()
+            'movies' => Movie::search($this->search)
+                                ->query(function($query){
+                                    $query->orderBy($this->sortColumn , $this->sortDirection);
+                                })
+                                ->paginate($this->perPage)
         ]);
     }
 }
