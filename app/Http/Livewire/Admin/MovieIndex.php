@@ -31,8 +31,18 @@ class MovieIndex extends Component
     public $overview;
     public $isPublic;
     
+    public $movie ; 
+
     public $rules = [
-        'name' => 'required' , 
+        'movie' => 'required' , 
+        'title'  => 'required' ,  
+        'runtime'  => 'required' , 
+        'lang'   => 'required' , 
+        'rating'   => 'required' , 
+        'posterPath'   => 'required' , 
+        'backdropPath'  => 'required' , 
+        'overview'   => 'required' , 
+        'isPublic'  => 'required'
     ];
 
 
@@ -95,37 +105,48 @@ class MovieIndex extends Component
 
     public function loadMovie()
     {
-        $movie = Movie::findOrFail($this->movieId);
-        $this->title = $season->title ; 
-        $this->seasonNumber = $season->season_number ;
-        $this->poster_path = $season->poster_path ;
+        $this->movie = Movie::findOrFail($this->movieId);
+        $this->title = $this->movie->title ; 
+        $this->runtime = $this->movie->runtime ;
+        $this->lang = $this->movie->lang ;
+        $this->videoFormat = $this->movie->video_format ;
+        $this->rating  = $this->movie->rating ;
+        $this->posterPath  = $this->movie->poster_path ;
+        $this->backdropPath  = $this->movie->backdrop_path ;
+        $this->overview  = $this->movie->overview ;
+        $this->isPublic   = $this->movie->is_public ;
     }
 
-    public function updateSeason()
+    public function updateMovie()
     {
         $this->validate();
-        $season = Season::findOrFail($this->movieId);
-        $season->update([
-            'name' => $this->name , 
-            'slug' => Str::slug($this->name), 
-            'season_number' => $this->seasonNumber ,
-            'poster_path' => $this->poster_path
+       
+        $this->movie->update([
+            'title' => $this->title , 
+            'runtime' => $this->runtime  , 
+            'lang' => $this->lang, 
+            'video_format' => $this->videoFormat  ,
+            'rating' => $this->rating , 
+            'poster_path' => $this->posterPath , 
+            'backdrop_path' => $this->backdropPath , 
+            'overview' => $this->overview ,
+            'is_public' => $this->isPublic
         ]);
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'season updated']);
-        $this->reset(['name' , 'seasonNumber' , 'poster_path' , 'movieId' , 'modal']);
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Movie updated']);
+        $this->reset();
     }
 
     public function resetFilters()
     {
-        $this->reset(['search' , 'sort' , 'perPage']);
+        $this->reset(['search' , 'sortColumn' , 'perPage' , 'sortDirection']);
     }
 
-    public function deleteSeason($id)
+    public function deleteMovie($id)
     {
-        $season = Season::findOrFail($id);
-        $season->delete();
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'season deleted']);
-        $this->reset(['name' , 'seasonNumber' , 'poster_path' , 'movieId']);
+        $movie = Movie::findOrFail($id);
+        $movie->delete();
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Movie deleted']);
+        $this->reset();
     }
     
     public function render()

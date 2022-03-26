@@ -55,13 +55,46 @@
                 <tr>
                     
                     <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sortByColumn('title')">
-                        Title
+                        <div class="flex items-center space-x-4">
+                            <span>Title</span>
+                            @if ($sortColumn == 'title' && $sortDirection == 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                            </svg>
+                            @elseif($sortColumn == 'title' && $sortDirection == 'desc') 
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            @endif
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sortByColumn('rating')">
-                        Rating
+                        <div class="flex items-center space-x-4">
+                            <span>Rating</span>
+                            @if ($sortColumn == 'rating' && $sortDirection == 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                            </svg>
+                            @elseif($sortColumn == 'rating' && $sortDirection == 'desc') 
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            @endif
+                        </div>
                     </th>
                     <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="sortByColumn('visits')">
-                        Visits
+                        <div class="flex items-center space-x-4">
+                            <span>Visits</span>
+                            @if ($sortColumn == 'visits' && $sortDirection == 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                            </svg>
+                            @elseif($sortColumn == 'visits' && $sortDirection == 'desc') 
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            @endif
+                        </div>
                     </th>
                     <th class="px-4 py-3">Runtime</th>
                     <th class="px-4 py-3">Published</th>
@@ -112,10 +145,10 @@
             </tbody>
         </table>
     </div>
-    {{-- <x-jet-dialog-modal wire:model="modal">
+    <x-jet-dialog-modal wire:model="modal">
         <x-slot name="title">
             <div class="text-center">
-                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Tag</h1>
+                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Movie Edit</h1>
                 <p class="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
             </div>
         </x-slot>
@@ -128,16 +161,79 @@
                         <div class="m-7">
                             <form>
                                 <div class="mb-6">
-                                    <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Tag Name</label>
-                                    <input wire:model="tag_name" type="text" id="name"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    <label for="title" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Cast title</label>
+                                    <input wire:model="title" type="text" id="title"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                                 </div>
+                                @error('title')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+
+                                <div class="mb-6">
+                                    <label for="runtime" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Runtime</label>
+                                    <input wire:model="runtime" type="text" id="runtime"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                @error('runtime')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+
+                                <div class="mb-6">
+                                    <label for="lang" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Languange</label>
+                                    <input wire:model="lang" type="text" id="lang"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                @error('lang')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+
+                                <div class="mb-6">
+                                    <label for="vid_format" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Video Format</label>
+                                    <input wire:model="videoFormat" type="text" id="vid_format"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                @error('videoFormat')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+
+                                <div class="mb-6">
+                                    <label for="rating" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Rating</label>
+                                    <input wire:model="rating" type="text" id="rating"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                @error('rating')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+                                
+                                <div class="mb-6">
+                                    <label for="posterPath" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster path</label>
+                                    <input wire:model="posterPath" type="text" id="posterPath"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                @error('posterPath')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+
+                                <div class="mb-6">
+                                    <label for="backdropPath" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Backdrop path</label>
+                                    <input wire:model="backdropPath" type="text" id="backdropPath"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                </div>
+                                @error('backdropPath')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+
+                                <div class="mb-6">
+                                    <label for="overview" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your overview</label>
+                                    <textarea rows="5" id="overview" placeholder="Your overview" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" >{{$overview}}</textarea>
+                                </div>
+                                @error('overview')
+                                    <span class="text-xs text-red-600">{{$message}}</span>
+                                @enderror
+
+                                <div class="mb-6">
+                                    <input wire:model="isPublic" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
+                                      is public
+                                    </label>
+                                </div>
+                                
                                 <div class="mb-6">
                                     <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
-                                    @if ($tag_id)
-                                        <button wire:click="updateTag" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
-                                        @else
-                                        <button wire:click="createTag" type="button"  class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Create</button>
-                                    @endif
+                                    <button wire:click="updateMovie" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -147,5 +243,5 @@
 
         </x-slot>
         <x-slot name="footer">Footer</x-slot>
-    </x-jet-dialog-modal> --}}
+    </x-jet-dialog-modal>
 </div>

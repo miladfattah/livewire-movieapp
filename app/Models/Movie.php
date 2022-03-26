@@ -16,7 +16,7 @@ class Movie extends Model
     public function toSearchableArray()
     {
         return [
-            'name' => $this->name,
+            'title' => $this->title,
         ];
     }
 }
