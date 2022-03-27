@@ -106,22 +106,22 @@
             </thead>
             <tbody>
                 
-                @forelse ($movies as $movie)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" wire:key="key-{{$movie->id}}-index">
+                @forelse ($movies as $table_movie)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" wire:key="key-{{$table_movie->id}}-index">
                     <td class="px-6 py-4">
-                        {{$movie->title}}
+                        {{$table_movie->title}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$movie->rating}}
+                        {{$table_movie->rating}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$movie->visits}}
+                        {{$table_movie->visits}}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border">
-                        {{ date('H:i', mktime(0, $movie->runtime)) }}
+                        {{ date('H:i', mktime(0, $table_movie->runtime)) }}
                     </td>
                     <td class="px-6 py-4">
-                        @if ($movie->is_public)
+                        @if ($table_movie->is_public)
                         <span class="bg-green-200 opacity-80 rounded-full px-2">published</span>
                         @else
                         <span class="bg-red-200 opacity-50 rounded-full px-2">unPublished</span>
@@ -129,11 +129,11 @@
                     </td>  
                     <td class="px-4 py-3 text-ms font-semibold border">
                         <img class="h-12 w-12 rounded"
-                            src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{ $movie->poster_path }}">
+                            src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{ $table_movie->poster_path }}">
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <button wire:click="editModal({{$movie->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
-                        <button wire:click="deleteMovie({{$movie->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
+                        <button wire:click="editModal({{$table_movie->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
+                        <button wire:click="deleteMovie({{$table_movie->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
                     </td>
                    @empty
                     <td class="px-6 py-4">
@@ -150,6 +150,7 @@
             <div class="text-center">
                 <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Movie Edit</h1>
                 <p class="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
+           
             </div>
         </x-slot>
         <x-slot name="content">
@@ -242,6 +243,11 @@
             </div>
 
         </x-slot>
-        <x-slot name="footer">Footer</x-slot>
+        <x-slot name="footer">
+
+            <div class="flex space-x-4">
+             
+            </div>
+        </x-slot>
     </x-jet-dialog-modal>
 </div>

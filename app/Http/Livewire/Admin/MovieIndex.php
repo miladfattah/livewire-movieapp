@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Movie;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -58,7 +59,8 @@ class MovieIndex extends Component
         $apiMovie = Http::get("https://api.themoviedb.org/3/movie/{$this->movieTmdb}?api_key=91746255cf87a6b08e747e6ee93edff5");
         if($apiMovie->ok()){
             $newMovie = $apiMovie->json();
-            Movie::create([
+          
+            $created_movie =  Movie::create([
                 'tmdb_id' => $newMovie['id'] , 
                 'title' => $newMovie['title'] , 
                 'release_date' => $newMovie['release_date'] ,
@@ -72,7 +74,10 @@ class MovieIndex extends Component
                 'backdrop_path' => $newMovie['backdrop_path'] , 
                 'overview' => $newMovie['overview'] 
             ]);
-
+            $tmdb_genres = $newMovie['genres'];
+            $tmdb_genres_ids = collect($tmdb_genres)->pluck('id');
+            $genres = Genre::whereIn('tmdb_id' , $tmdb_genres_ids)->get();
+            $created_movie->genres()->attach($genres); 
             $this->reset('movieTmdb');
             $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Movie create']);
         }else{
@@ -98,14 +103,14 @@ class MovieIndex extends Component
 
     public function editModal($id)
     {
-        $this->modal = true ; 
         $this->movieId = $id ; 
+        $this->movie = Movie::findOrFail($this->movieId);
+        $this->modal = true ; 
         $this->loadMovie();
     }
 
     public function loadMovie()
     {
-        $this->movie = Movie::findOrFail($this->movieId);
         $this->title = $this->movie->title ; 
         $this->runtime = $this->movie->runtime ;
         $this->lang = $this->movie->lang ;
