@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class TrailerUrl extends Model
 {
     use HasFactory;
+    protected $guarded = [] ; 
+
+    public function trailerable()
+    {
+        return $this->morphTo();
+    }
 }

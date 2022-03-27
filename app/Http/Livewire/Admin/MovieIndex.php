@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Movie;
 use App\Models\Genre;
+use App\Models\TrailerUrl;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -12,15 +13,19 @@ use Livewire\WithPagination;
 class MovieIndex extends Component
 {
     use WithPagination ;
-
+    //modals 
     public $modal = false ;
+    public $trailerModal = false ;
+    public $detailModal = false ;
+
     public $movieId ; 
 
+    // sorting 
     public $search = '' ;
     public $sortColumn = 'title' ;
     public $sortDirection = 'asc' ; 
     public $perPage = 5 ; 
-
+    // movie
     public $movieTmdb ; 
     public $title;
     public $runtime;
@@ -31,7 +36,13 @@ class MovieIndex extends Component
     public $backdropPath;
     public $overview;
     public $isPublic;
-    
+    //trailer 
+    public $trailerName ;
+    public $embedHtml ;
+
+    //details
+    public $detailTitle ; 
+
     public $movie ; 
 
     public $rules = [
@@ -152,6 +163,38 @@ class MovieIndex extends Component
         $movie->delete();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Movie deleted']);
         $this->reset();
+    }
+
+    public function showTrailer($id)
+    {
+        $this->movie = Movie::findOrFail($id);
+        $this->trailerModal = true ; 
+    }
+    
+    public function addTrailer()
+    {
+        $this->movie->trailers()->create([
+            'name' => $this->trailerName , 
+            'embed_html' => $this->embedHtml 
+        ]);
+
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Trailer added']);
+        $this->reset();
+    }
+
+    public function deleteTrailer($id)
+    {
+        $trailer = TrailerUrl::findOrFail($id);
+        $trailer->delete();
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Trailer deleted']);
+        $this->reset();
+    }
+
+    public function showDetailMovie($id)
+    {
+        $detailMovie =  Movie::findOrFail($id);
+        $this->detailTitle = $detailMovie->title ;
+        $this->detailModal = true ;
     }
     
     public function render()
