@@ -266,31 +266,39 @@
 
             <div class="flex items-center w-full ">
                 <div class="w-full">
-                    <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
-                     
+                    <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm" x-data="{tag : false}">
+                        <div class="w-full flex space-x-4">
+                            <button  class="flex-1 px-5 py-2 border " x-on:click="tag = true">Tag</button>
+                            <button class="flex-1 px-5 py-2 border "  x-on:click="tag = false">Form</button>
+                        </div>
                         <div class="m-7">
-                            <form>
-                                <div class="mb-6">
-                                    <label for="trailerName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Name</label>
-                                    <input wire:model="trailerName" type="text" id="trailerName"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('trailerName')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <label for="embedHtml" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your embedHtml</label>
-                                    <textarea rows="5" id="embedHtml" wire:model="embedHtml" placeholder="Your embedHtml" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" ></textarea>
-                                </div>
-                                @error('embedHtml')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
-                                    <button wire:click="addTrailer" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Add</button>
-                                </div>
-                            </form>
+                            <div x-show="!tag">
+                                <form>
+                                    <div class="mb-6">
+                                        <label for="trailerName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Name</label>
+                                        <input wire:model="trailerName" type="text" id="trailerName"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('trailerName')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="embedHtml" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your embedHtml</label>
+                                        <textarea rows="5" id="embedHtml" wire:model="embedHtml" placeholder="Your embedHtml" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" ></textarea>
+                                    </div>
+                                    @error('embedHtml')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
+                                        <button wire:click="addTrailer" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div x-show="tag">
+                                Tags
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -325,7 +333,7 @@
                             <div>
                                 <span>{{$detailTitle}}</span>
                             </div>
-                            <div class="mb-6">
+                            <div class="m-6">
                                 <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
                             </div>
                         </div>

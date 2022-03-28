@@ -1034,6 +1034,9 @@ select {
 .m-7 {
   margin: 1.75rem;
 }
+.m-6 {
+  margin: 1.5rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1682,6 +1685,10 @@ select {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -2061,13 +2068,13 @@ select {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.hover\:text-gray-100:hover {
-  --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity));
-}
 .hover\:text-indigo-900:hover {
   --tw-text-opacity: 1;
   color: rgb(49 46 129 / var(--tw-text-opacity));
+}
+.hover\:text-gray-100:hover {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
   z-index: 10;
