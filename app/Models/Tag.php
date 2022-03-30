@@ -16,7 +16,12 @@ class Tag extends Model
     public function toSearchableArray()
     {
         return [
-            'name' => $this->name,
+            'tag_name' => $this->name,
         ];
+    }
+
+    public function movie()
+    {
+        return $this->morphedByMany(Movie::class , 'taggables');
     }
 }

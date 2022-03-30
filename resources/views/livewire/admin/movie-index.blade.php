@@ -159,87 +159,95 @@
         <x-slot name="content">
 
             <div class="flex items-center w-full ">
-                <div class="w-full">
+                <div class="w-full"  x-data="{tag : 0}"  >
                     <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
-                     
+                        <div class="w-full flex space-x-4">
+                            <button  class="flex-1 px-5 py-2 border " x-on:click="tag = 0">Form</button>
+                            <button class="flex-1 px-5 py-2 border "  x-on:click="tag = 1">Tag</button>
+                        </div>
                         <div class="m-7">
-                            <form>
-                                <div class="mb-6">
-                                    <label for="title" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Cast title</label>
-                                    <input wire:model="title" type="text" id="title"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('title')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <label for="runtime" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Runtime</label>
-                                    <input wire:model="runtime" type="text" id="runtime"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('runtime')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <label for="lang" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Languange</label>
-                                    <input wire:model="lang" type="text" id="lang"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('lang')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <label for="vid_format" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Video Format</label>
-                                    <input wire:model="videoFormat" type="text" id="vid_format"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('videoFormat')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <label for="rating" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Rating</label>
-                                    <input wire:model="rating" type="text" id="rating"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('rating')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-                                
-                                <div class="mb-6">
-                                    <label for="posterPath" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster path</label>
-                                    <input wire:model="posterPath" type="text" id="posterPath"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('posterPath')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <label for="backdropPath" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Backdrop path</label>
-                                    <input wire:model="backdropPath" type="text" id="backdropPath"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
-                                </div>
-                                @error('backdropPath')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <label for="overview" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your overview</label>
-                                    <textarea rows="5" id="overview" placeholder="Your overview" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" >{{$overview}}</textarea>
-                                </div>
-                                @error('overview')
-                                    <span class="text-xs text-red-600">{{$message}}</span>
-                                @enderror
-
-                                <div class="mb-6">
-                                    <input wire:model="isPublic" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
-                                      is public
-                                    </label>
-                                </div>
-                                
-                                <div class="mb-6">
-                                    <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
-                                    <button wire:click="updateMovie" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
-                                </div>
-                            </form>
+                            <div x-show="tag === 0">
+                                <form>
+                                    <div class="mb-6">
+                                        <label for="title" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Cast title</label>
+                                        <input wire:model="title" type="text" id="title"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('title')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="runtime" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Runtime</label>
+                                        <input wire:model="runtime" type="text" id="runtime"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('runtime')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="lang" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Languange</label>
+                                        <input wire:model="lang" type="text" id="lang"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('lang')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="vid_format" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Video Format</label>
+                                        <input wire:model="videoFormat" type="text" id="vid_format"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('videoFormat')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="rating" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Rating</label>
+                                        <input wire:model="rating" type="text" id="rating"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('rating')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+                                    
+                                    <div class="mb-6">
+                                        <label for="posterPath" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Poster path</label>
+                                        <input wire:model="posterPath" type="text" id="posterPath"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('posterPath')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="backdropPath" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Backdrop path</label>
+                                        <input wire:model="backdropPath" type="text" id="backdropPath"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('backdropPath')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="overview" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your overview</label>
+                                        <textarea rows="5" id="overview" placeholder="Your overview" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" >{{$overview}}</textarea>
+                                    </div>
+                                    @error('overview')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <input wire:model="isPublic" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">
+                                          is public
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
+                                        <button wire:click="updateMovie" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div x-show="tag === 1">
+                                <livewire:admin.movie-tag :movie="$movie" >
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -266,13 +274,9 @@
 
             <div class="flex items-center w-full ">
                 <div class="w-full">
-                    <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm" x-data="{tag : false}">
-                        <div class="w-full flex space-x-4">
-                            <button  class="flex-1 px-5 py-2 border " x-on:click="tag = true">Tag</button>
-                            <button class="flex-1 px-5 py-2 border "  x-on:click="tag = false">Form</button>
-                        </div>
+                    <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
+                  
                         <div class="m-7">
-                            <div x-show="!tag">
                                 <form>
                                     <div class="mb-6">
                                         <label for="trailerName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Name</label>
@@ -295,10 +299,6 @@
                                         <button wire:click="addTrailer" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Add</button>
                                     </div>
                                 </form>
-                            </div>
-                            <div x-show="tag">
-                                Tags
-                            </div>
                         </div>
                     </div>
                 </div>

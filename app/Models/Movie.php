@@ -29,4 +29,9 @@ class Movie extends Model
     {
         return $this->morphMany(TrailerUrl::class , 'trailerable');
     }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class  , 'taggables' );
+    }
 }
