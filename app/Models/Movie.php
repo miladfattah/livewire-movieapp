@@ -34,4 +34,10 @@ class Movie extends Model
     {
         return $this->morphToMany(Tag::class  , 'taggables' );
     }
+
+    public function casts()
+    {
+        return $this->belongsToMany(Cast::class , 'cast_movie');
+    }
+    
 }

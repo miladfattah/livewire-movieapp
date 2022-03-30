@@ -57,6 +57,10 @@ class MovieIndex extends Component
         'isPublic'  => 'required'
     ];
 
+    protected $listeners = [
+        'addTag' => 'addTag' ,
+        'addCast' => 'addCast'
+    ];
 
     public function generateMovie()
     {
@@ -196,7 +200,19 @@ class MovieIndex extends Component
         $this->detailTitle = $detailMovie->title ;
         $this->detailModal = true ;
     }
+
+    public function addTag()
+    {
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Tag added']);
+        $this->reset();
+    }
     
+    public function addCast()
+    {
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Cast added']);
+        $this->reset();
+    }
+
     public function render()
     {
         return view('livewire.admin.movie-index' , [

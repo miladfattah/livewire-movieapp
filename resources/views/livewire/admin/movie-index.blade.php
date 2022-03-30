@@ -164,6 +164,7 @@
                         <div class="w-full flex space-x-4">
                             <button  class="flex-1 px-5 py-2 border " x-on:click="tag = 0">Form</button>
                             <button class="flex-1 px-5 py-2 border "  x-on:click="tag = 1">Tag</button>
+                            <button class="flex-1 px-5 py-2 border "  x-on:click="tag = 2">Cast</button>
                         </div>
                         <div class="m-7">
                             <div x-show="tag === 0">
@@ -247,6 +248,9 @@
                             </div>
                             <div x-show="tag === 1">
                                 <livewire:admin.movie-tag :movie="$movie" >
+                            </div>
+                            <div x-show="tag === 2">
+                                <livewire:admin.movie-cast :movie="$movie" >
                             </div>
                         </div>
                     </div>

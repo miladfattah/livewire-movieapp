@@ -18,4 +18,9 @@ class Cast extends Model
         ];
     }
 
+    public function movies()
+    {
+        return $this->belognToMany(Movie::class , 'cast_movie')->latest();
+    }
+
 }
