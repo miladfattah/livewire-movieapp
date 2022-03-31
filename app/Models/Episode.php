@@ -19,4 +19,15 @@ class Episode extends Model
             'name' => $this->name,
         ];
     }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
+    }
+
+    public function trailers()
+    {
+        return $this->morphMany(TrailerUrl::class, 'trailerable');
+    }
+    
 }

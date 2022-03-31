@@ -9,12 +9,21 @@ use App\Http\Livewire\Admin\EpisodeIndex ;
 use App\Http\Livewire\Admin\GenreIndex ;
 use App\Http\Livewire\Admin\CastIndex ;
 use App\Http\Livewire\Admin\TagIndex ;
+use App\Http\Controllers\WelcomeController ;
+use App\Http\Controllers\MovieController ;
+use App\Http\Controllers\SerieController ;
+use App\Http\Controllers\CastController ;
+use App\Http\Controllers\GenreControler ;
 
+Route::get('/', WelcomeController::class  );
+Route::get('/movies', [MovieController::class , 'index'])->name('movie.index');
+Route::get('/movies/{movie:slug}', [MovieController::class , 'show'])->name('movie.show');
+Route::get('/series', [SerieController::class , 'index'])->name('serie.index');
+Route::get('/series/{serie:slug}', [SerieController::class , 'show'])->name('serie.show');
+Route::get('/episodes/{episode:slug}', [SerieController::class , 'showEpisode'])->name('episode.show');
+Route::get('/casts', [CastController::class , 'index'])->name('cast.index');
+Route::get('/genres/{slug}', [GenreControler::class , 'index'])->name('genre.show');
 
-Route::get('/', function () {
-    // auth()->user()->assingRole('admin');
-    return view('welcome');
-});
 
 Route::middleware(['auth'])->get('/dashboard', function () {
     return view('dashboard');
