@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Movie;
 use App\Models\Genre;
+use App\Models\Cast;
 use App\Models\TrailerUrl;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -45,6 +46,10 @@ class MovieIndex extends Component
 
     public $movie ; 
 
+    //cast 
+    public $queryCast = '' ; 
+    public $casts = [] ;
+    public $castMovie ;
     public $rules = [
         'movie' => 'required' , 
         'title'  => 'required' ,  
@@ -120,6 +125,7 @@ class MovieIndex extends Component
     {
         $this->movieId = $id ; 
         $this->movie = Movie::findOrFail($this->movieId);
+        $this->castMovie =  $this->movie ; 
         $this->modal = true ; 
         $this->loadMovie();
     }
@@ -207,11 +213,26 @@ class MovieIndex extends Component
         $this->reset();
     }
     
-    public function addCast()
+   
+    // Cast add to movie -------------
+
+    
+    
+    public function updatedQueryCast()
     {
+        $this->casts = Cast::search($this->queryCast)->get();
+
+    }
+
+    public function addCast($id , $movie)
+    {
+        $cast = Cast::findOrFail($id);
+        $this->castMovie->casts()->attach($cast);
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Cast added']);
         $this->reset();
     }
+    //-------------
+
 
     public function render()
     {

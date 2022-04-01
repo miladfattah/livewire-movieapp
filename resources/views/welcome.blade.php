@@ -19,6 +19,25 @@
                                     class="absolute x-10 left-2 top-2 h-6 w-12 bg-gray-800 group-hover:bg-gray-700 text-blue-400 text-center rounded">
                                     New
                                 </div>
+                                <div class="absolute inset-0 z-10  bg-gradient-to-t from-black to-transparent"></div>
+                                <div class="absolute inset-y-0 left-5 z-10 invisible group-hover:visible flex items-center ">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-12 w-12 text-blue-700 bg-pink-700 rounded-full z-20" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div 
+                                     class="absolute transition z-10 opacity-0 duration-500 ease-in-out transform group-hover:opacity-100 group-hover:translate-x-16 group-hover:pr-2 text-white font-bold">
+                                        Play
+                                    </div>
+                                </div>
+                                <div class="absolute z-10  bottom-2 left-2 text-indigo-200 text-sm font-bold group-hover:text-blue-700">
+                                    @foreach ($movie->genres as $genre)
+                                        {{$genre->title}} /
+                                    @endforeach
+                                </div>
                             </a>
                         </x-slot:image>
                         <a href="{{route('movie.show' , $movie->slug)}}">

@@ -250,7 +250,23 @@
                                 <livewire:admin.movie-tag :movie="$movie" >
                             </div>
                             <div x-show="tag === 2">
-                                <livewire:admin.movie-cast :movie="$movie" >
+                                <div>
+                                    <input wire:model="queryCast" type="text" class="rounded w-full" placeholder="Serach Cast" >
+                                    @if (!empty($queryCast))
+                                        <div class="w-full">
+                                            @if (!empty($casts))
+                                                @foreach ($casts as $cast)
+                                                <div 
+                                                    wire:click="addCast({{$cast->id}} , {{$movie}})"
+                                                    class="w-full p-2 m-2 bg-green-200 hover:bg-green-300  cursor-pointer"
+                                                >
+                                                    {{$cast->name}}
+                                                </div>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
