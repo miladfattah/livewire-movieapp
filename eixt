@@ -1,0 +1,161 @@
+[33mcommit c39617762ed212dc05c182c969d4f61a69ad8fe9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Thu Mar 31 19:01:27 2022 +0430
+
+    create welcome route with movies , episodes and series
+
+[33mcommit 97004fa2ea7bbcceac1d294bfeaf4a250866d1f0[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Thu Mar 31 17:38:30 2022 +0430
+
+    Start front-end section and added navbar/footer
+
+[33mcommit 7ebad3152266c83fd87ffa682812ecd60913d664[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Wed Mar 30 16:31:16 2022 +0430
+
+    add cast in movie section (have a but)
+
+[33mcommit 3926449c5c5395cd8f34ca0fcd9d1d750af5c8d2[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Wed Mar 30 15:46:05 2022 +0430
+
+    add tag in movie section (have a bug)
+
+[33mcommit 5574b90e5abb278b21f5118ef7362aeea6d21f68[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Mon Mar 28 10:14:14 2022 +0430
+
+    swich between tag and form with alpinejs
+
+[33mcommit 657799c6c0757df1b9f74a6ab153a594d65c8907[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Sun Mar 27 13:04:01 2022 +0430
+
+    add and delete Trailer / show detail movie
+
+[33mcommit 74b651d0e79a2f97282c259bac4ad775bb2b5d97[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Sun Mar 27 10:51:22 2022 +0430
+
+    create relationship between movie and genre
+
+[33mcommit eec986a675c407366cda21ce439ec624497babf9[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Sat Mar 26 10:38:23 2022 +0430
+
+    edit/delete and set arrow icon in movie section
+
+[33mcommit 41648d2750eb6a74b2d9db7d889ea8095898f512[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Fri Mar 25 11:55:37 2022 +0430
+
+    sort and search fixed in movies section
+
+[33mcommit c157fd456174be4bdbbee819aa349b53f057eb4c[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Fri Mar 25 10:50:11 2022 +0430
+
+    Generate Movie from api
+
+[33mcommit cfdcea735b6f5b58a3aadde3f0edd5a417e179d3[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Fri Mar 25 09:41:23 2022 +0430
+
+    edit tag section
+
+[33mcommit d624b1f8afab56b4b523cf1be6a90849060519a9[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Wed Mar 23 21:08:31 2022 +0430
+
+    add textarea and checkbox for episode section
+
+[33mcommit fd8d11fe54970a27d31b475db1684c294b528b54[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Wed Mar 23 17:25:12 2022 +0430
+
+    CRUDE episode section
+
+[33mcommit 82820266c734fb446f40f61657823efb099cbbba[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Wed Mar 23 17:04:14 2022 +0430
+
+    get episode data from api
+
+[33mcommit ea51aa2a6c08a7050ebbcb18d70e71025594b4ac[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Wed Mar 23 13:18:20 2022 +0430
+
+    CRUED season section
+
+[33mcommit a995b79831a814b1789192c9cdcbd8b64e13517c[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Wed Mar 23 12:49:34 2022 +0430
+
+    get data from season api
+
+[33mcommit 47d52a05871735a51c5a3fd9482da8a5efb62b9a[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Tue Mar 22 22:20:08 2022 +0430
+
+    start season section
+
+[33mcommit b1aed37449ca488b8386529f7ed8c2a8407cc6f1[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Tue Mar 22 21:36:57 2022 +0430
+
+    Crued series section
+
+[33mcommit 116725c40c6783c45598248708c001a85ab34c94[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Tue Mar 22 13:02:39 2022 +0430
+
+    series add with api
+
+[33mcommit 57ed7ed94c8461e627980db3070ec3a413d997d8[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Mon Mar 21 12:39:59 2022 +0330
+
+    Genre section and search for cast secion
+
+[33mcommit e275cb2e15486aa295873c1b162e010937e2a1a5[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Sun Mar 20 13:54:33 2022 +0330
+
+    get api from tmdb and edit/delete cast section
+
+[33mcommit 5efaffb054701600350456485779994d5ee10cd3[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Sun Mar 20 11:18:46 2022 +0330
+
+    create , edit and delete tag section
+
+[33mcommit 0fc2dadfda0be5c2b7ce0234d432a8baed8edbff[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Sat Mar 19 11:10:08 2022 +0330
+
+    adding table for admin panel
+
+[33mcommit 8f4fbee6554da3b93251341bcabd96add63814f5[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Sat Mar 19 09:57:25 2022 +0330
+
+    fixed route bug and add active mode routes
+
+[33mcommit b0ec4a2fcb2233f40f81aa7df44154266b2e8b51[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Fri Mar 18 18:13:09 2022 +0330
+
+    create routes website
+
+[33mcommit 249cadb1eb7bc826339464c89334f3cbb17011ea[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Thu Mar 17 10:14:48 2022 +0330
+
+    create migration
+
+[33mcommit 603ca250369dacf0001889c7a0fdd08a18fdc597[m
+Author: MiladFattah <miladalpha1379@gmail.com>
+Date:   Thu Mar 17 09:37:47 2022 +0330
+
+    start project with admin panel template

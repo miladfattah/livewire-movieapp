@@ -22,6 +22,7 @@ Route::get('/series', [SerieController::class , 'index'])->name('serie.index');
 Route::get('/series/{serie:slug}', [SerieController::class , 'show'])->name('serie.show');
 Route::get('/episodes/{episode:slug}', [SerieController::class , 'showEpisode'])->name('episode.show');
 Route::get('/casts', [CastController::class , 'index'])->name('cast.index');
+Route::get('/casts/{cast:slug}', [CastController::class , 'show'])->name('cast.show');
 Route::get('/genres/{slug}', [GenreControler::class , 'index'])->name('genre.show');
 
 
