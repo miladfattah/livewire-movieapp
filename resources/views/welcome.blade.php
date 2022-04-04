@@ -101,6 +101,10 @@
                                     class="absolute x-10 left-2 top-2 h-6 w-12 bg-gray-800 group-hover:bg-gray-700 text-blue-400 text-center rounded">
                                     New
                                 </div>
+                                <div
+                                class="absolute px-3 left-2 bottom-2 h-6  group-hover:bg-gray-700 text-white text-center rounded">
+                                   Seasons :  {{$serie->seasons_count}}
+                                </div>
                             </a>
                         </x-slot:image>
                         <a href="{{route('serie.show' , $serie->slug)}}">

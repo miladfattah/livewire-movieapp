@@ -19,4 +19,9 @@ class Serie extends Model
             'name' => $this->name,
         ];
     }
+
+    public function seasons()
+    {
+        return $this->hasMany(Season::class);
+    }
 }

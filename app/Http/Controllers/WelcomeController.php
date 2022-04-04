@@ -11,7 +11,7 @@ class WelcomeController extends Controller
     public function __invoke(){
         $movies = Movie::orderBy('updated_at')->take(8)->get();
         $episodes = Episode::orderBy('created_at')->take(8)->get();
-        $series = Serie::orderBy('created_at')->take(8)->get();
+        $series = Serie::withCount('seasons')->orderBy('created_at')->take(8)->get();
         return view('welcome' , compact('movies' , 'episodes' , 'series'));
     }
 }

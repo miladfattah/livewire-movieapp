@@ -48,7 +48,7 @@
                     </x-movie-card>
                 @endforeach
             </div>
-            <div class="px-3">
+            <div class="px-3 ">
                 {{$movies->links()}}
             </div>
         </section>
