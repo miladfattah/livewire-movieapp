@@ -20,6 +20,7 @@ Route::get('/movies', [MovieController::class , 'index'])->name('movie.index');
 Route::get('/movies/{movie:slug}', [MovieController::class , 'show'])->name('movie.show');
 Route::get('/series', [SerieController::class , 'index'])->name('serie.index');
 Route::get('/series/{serie:slug}', [SerieController::class , 'show'])->name('serie.show');
+Route::get('/series/{serie:slug}/seasons/{season:slug}', [SerieController::class , 'seasonShow'])->name('season.show');
 Route::get('/episodes/{episode:slug}', [SerieController::class , 'showEpisode'])->name('episode.show');
 Route::get('/casts', [CastController::class , 'index'])->name('cast.index');
 Route::get('/casts/{cast:slug}', [CastController::class , 'show'])->name('cast.show');

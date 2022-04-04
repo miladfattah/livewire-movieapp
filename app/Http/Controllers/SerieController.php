@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Serie; 
+use App\Models\Season; 
 
 class SerieController extends Controller
 {
@@ -17,5 +18,11 @@ class SerieController extends Controller
     {
         $latest = Serie::orderBy('created_at' , 'desc')->take(9)->get();
         return view('serie.show' , compact('serie' , 'latest'));
+    }
+
+    public function seasonShow(Serie $serie , Season $season)
+    {
+        $latest = Season::orderBy('created_at' , 'desc')->take(9)->get();
+        return view('serie.season.show' , compact('serie' , 'season' , 'latest'));
     }
 }
