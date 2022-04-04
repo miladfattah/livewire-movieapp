@@ -2209,10 +2209,6 @@ select {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }
-.hover\:text-indigo-200:hover {
-  --tw-text-opacity: 1;
-  color: rgb(199 210 254 / var(--tw-text-opacity));
-}
 .focus\:z-10:focus {
   z-index: 10;
 }
