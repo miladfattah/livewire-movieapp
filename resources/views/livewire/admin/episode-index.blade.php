@@ -72,21 +72,22 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($episodes as $episode)
+                @forelse ($episodes as $table_episode)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" wire:key="key-{{$season->id}}-index">
                     <td class="px-6 py-4">
-                        {{$episode->name}}
+                        {{$table_episode->name}}
                     </td>
                     <td class="px-6 py-4">
-                        @if ($episode->is_public)
+                        @if ($table_episode->is_public)
                         <span class="bg-green-200 opacity-80 rounded-full px-2">published</span>
                         @else
                         <span class="bg-red-200 opacity-50 rounded-full px-2">unPublished</span>
                         @endif
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <button wire:click="editModal({{$episode->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
-                        <button wire:click="deleteEpisode({{$episode->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
+                        <button wire:click="showTrailer({{$table_episode->id}})" class="px-2 py-1 text-xs text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Trailer</button>
+                        <button wire:click="editModal({{$table_episode->id}})" class="px-2 py-1 text-xs text-white bg-orange-500 rounded-md focus:bg-orange-600 focus:outline-none">Edit</button>
+                        <button wire:click="deleteEpisode({{$table_episode->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">Delete</button>
                     </td>
                    @empty
                     <td class="px-6 py-4">
@@ -154,5 +155,57 @@
 
         </x-slot>
         <x-slot name="footer">Footer</x-slot>
+    </x-jet-dialog-modal>
+    <x-jet-dialog-modal wire:model="trailerModal">
+        <x-slot name="title">
+            <div class="text-center">
+                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">trailer</h1>
+                <p class="text-gray-400 dark:text-gray-400">Fill up the form below to send us a message.</p>
+           
+            </div>
+        </x-slot>
+        <x-slot name="content">
+
+            <div class="flex items-center w-full ">
+                <div class="w-full">
+                    <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
+                  
+                        <div class="m-7">
+                                <form>
+                                    <div class="mb-6">
+                                        <label for="trailerName" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Name</label>
+                                        <input wire:model="trailerName" type="text" id="trailerName"  class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                    </div>
+                                    @error('trailerName')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <label for="embedHtml" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Your embedHtml</label>
+                                        <textarea rows="5" id="embedHtml" wire:model="embedHtml" placeholder="Your embedHtml" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" ></textarea>
+                                    </div>
+                                    @error('embedHtml')
+                                        <span class="text-xs text-red-600">{{$message}}</span>
+                                    @enderror
+    
+                                    <div class="mb-6">
+                                        <button wire:click="closeModal" type="button" class="px-3 py-2 text-white bg-yellow-500 rounded-md focus:bg-yellow-600 focus:outline-none">Cancel</button>
+                                        <button wire:click="addTrailer" type="button" class="px-3 py-2 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Add</button>
+                                    </div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </x-slot>
+        <x-slot name="footer">
+            <div class="flex space-x-4">
+                @if ($episode)
+                    @foreach ($episode->trailers as $trailer)
+                    <button wire:click="deleteTrailer({{$trailer->id}})" class="px-2 py-1 text-xs text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none">{{$trailer->name}}</button>
+                    @endforeach
+                @endif
+            </div>
+        </x-slot>
     </x-jet-dialog-modal>
 </div>

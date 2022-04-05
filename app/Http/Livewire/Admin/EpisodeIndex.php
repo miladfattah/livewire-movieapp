@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 use App\Models\Serie; 
 use App\Models\Season; 
 use App\Models\Episode;
+use App\Models\TrailerUrl;
 
 class EpisodeIndex extends Component
 {
@@ -21,6 +22,13 @@ class EpisodeIndex extends Component
     public $perPage = 5 ;
 
     public $modal = false;
+    public $trailerModal = false ;
+
+     //trailer 
+    public $episode ; 
+    public $trailerName ;
+    public $embedHtml ;
+
     public $episodeId ;
 
     public $name ; 
@@ -67,7 +75,7 @@ class EpisodeIndex extends Component
 
     public function closeModal()
     {
-        $this->modal = false ;
+        $this->reset();        
     }
 
     public function editModal($id)
@@ -114,6 +122,32 @@ class EpisodeIndex extends Component
         $this->reset(['name' , 'episodeNumber' , 'overview', 'isPublic' , 'episodeId']);
     }
     
+
+    public function showTrailer($id)
+    {
+        $this->episode = Episode::findOrFail($id);
+        $this->trailerModal = true ; 
+    }
+    
+    public function addTrailer()
+    {
+        $this->episode->trailers()->create([
+            'name' => $this->trailerName , 
+            'embed_html' => $this->embedHtml 
+        ]);
+
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Trailer added']);
+        $this->reset('trailerName' , 'embedHtml' , 'episode'  , 'trailerModal');
+    }
+
+    public function deleteTrailer($id)
+    {
+        $trailer = TrailerUrl::findOrFail($id);
+        $trailer->delete();
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Trailer deleted']);
+        $this->reset('trailerName' , 'embedHtml' , 'episode'  , 'trailerModal');
+    }
+
     public function render()
     {
         return view('livewire.admin.episode-index' , [
