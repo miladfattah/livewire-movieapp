@@ -13,7 +13,7 @@ use App\Http\Controllers\WelcomeController ;
 use App\Http\Controllers\MovieController ;
 use App\Http\Controllers\SerieController ;
 use App\Http\Controllers\CastController ;
-use App\Http\Controllers\GenreControler ;
+use App\Http\Controllers\GenreController ;
 
 Route::get('/', WelcomeController::class  );
 Route::get('/movies', [MovieController::class , 'index'])->name('movie.index');
@@ -24,7 +24,7 @@ Route::get('/series/{serie:slug}/seasons/{season:slug}', [SerieController::class
 Route::get('/episodes/{episode:slug}', [SerieController::class , 'showEpisode'])->name('episode.show');
 Route::get('/casts', [CastController::class , 'index'])->name('cast.index');
 Route::get('/casts/{cast:slug}', [CastController::class , 'show'])->name('cast.show');
-Route::get('/genres/{slug}', [GenreControler::class , 'index'])->name('genre.show');
+Route::get('/genres/{genre:slug}', [GenreController::class , 'show'])->name('genre.show');
 
 
 Route::middleware(['auth'])->get('/dashboard', function () {
